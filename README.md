@@ -1,6 +1,4 @@
-# data-structures
-
-# Practicing data structures
+# Data Structures & Algorithms
 
 Practicing algorithms and data structures including the following
 
