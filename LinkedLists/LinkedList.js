@@ -2,6 +2,7 @@
  * Class creates a LinkedList by creating new nodes from the Node class
  */
 
+import { checkHeader } from "./errorHandling.js";
 import Node from "./Node.js";
 
 export default class LinkedList {
@@ -45,6 +46,7 @@ export default class LinkedList {
 
   // Similar to append, drilling down as long as next is not null and counting
   size() {
+    checkHeader(this.head);
     let currentNode = this.head;
     let totalNodes = 0;
     while (currentNode !== null) {
@@ -57,17 +59,13 @@ export default class LinkedList {
 
   // Return the first node in the list
   header() {
-    if (this.head === null) {
-      return console.log("Error: No node has been created");
-    }
+    checkHeader(this.head);
     return this.head;
   }
 
   // Return the last node in the list
   tail() {
-    if (this.head === null) {
-      return console.log("Error: No node has been created");
-    }
+    checkHeader(this.head);
 
     let currentNode = this.head;
     while (currentNode.next !== null) {
@@ -79,9 +77,7 @@ export default class LinkedList {
 
   // Return the node at the given index
   at(index) {
-    if (this.head === null) {
-      return console.log("Error: No node has been created");
-    }
+    checkHeader(this.head);
 
     // Check if inputted index is larger than the list
     if (this.size() <= index) {
@@ -95,14 +91,12 @@ export default class LinkedList {
       currentIndex++;
     }
 
-    return console.log({ currentNode });
+    return currentNode;
   }
 
   // Removes the last element from the list
   pop() {
-    if (this.head === null) {
-      return console.log("Error: No node has been created");
-    }
+    checkHeader(this.head);
 
     // Select the second to last node when value is not equal to null (last node will point ot null)
     let lastNode = this.head;
@@ -118,32 +112,18 @@ export default class LinkedList {
 
   // Represents LinkedList objects as strings to print out in console
   toString(nextNode) {
-    // Want to print out `${node.value} > ${node.value}`
-    if (this.head === null) {
-      return console.log("Error: No node has been created");
-    }
+    checkHeader(this.head);
 
     if (!nextNode) {
       return null;
     }
 
-    //let currentNode;
-
-    /* if (nextNode === null) {
-      currentNode = this.head;
-    } */
-
-    // currentNode = nextNode;
-
-    /* if (currentNode.next === null) {
-      return `${currentNode.value} > null`;
-    } */
-
+    // Using a recursive algorithm starting with the head being passed in
     return `${nextNode.value} > ${this.toString(nextNode.next)}`;
+  }
 
-    /* while (currentNode.next !== null) {
-      currentNode = currentNode.next;
-      return `${currentNode.value} >`;
-    } */
+  insertAt(value, index) {
+    checkHeader(this.head);
+    // Grab the node before the index
   }
 }
