@@ -35,3 +35,8 @@ console.log(linkedList.toString(newHeader));
 // Deleting last node
 linkedList.pop();
 console.log({ updatedSize: linkedList.size() });
+
+// Deleting node at specified index
+linkedList.removeAt(3);
+newHeader = linkedList.header();
+console.log(linkedList.toString(newHeader));

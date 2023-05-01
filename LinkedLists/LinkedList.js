@@ -122,8 +122,13 @@ export default class LinkedList {
     return `${nextNode.value} > ${this.toString(nextNode.next)}`;
   }
 
+  // Insert a new node with provided value at given index
   insertAt(value, index) {
     checkHeader(this.head);
+
+    if (this.size() < index) {
+      return console.log("Error: Inputted index is larger than Linked List");
+    }
     // Need to change the node before the index to point to the new node
     // Need to point the new index next to the current node
     let previousNode;
@@ -146,5 +151,38 @@ export default class LinkedList {
     newNode = new Node(value, initialNode);
     previousNode.next = newNode;
     return newNode;
+  }
+
+  // Remove a node at given index
+  removeAt(index) {
+    // Similar to insertAt, change previous index to point to one after deleted node
+    checkHeader(this.head);
+    let previousNode;
+    let nextNode;
+
+    // If the head is being deleted, just replace it with its next node
+    if (index === 0 && this.head.next !== null) {
+      this.head = this.head.next;
+      return this.head;
+    }
+
+    // If only head exists, delete it
+    if (index === 0 && this.head.next === null) {
+      this.head = null;
+      return "Deleted linked list";
+    }
+
+    if (this.size() <= index) {
+      return console.log("Error: Inputted index is larger than Linked List");
+    }
+
+    // If they choose the last node, use existing pop function
+    if (this.size() === index) {
+      this.pop();
+    }
+
+    previousNode = this.at(index - 1);
+    nextNode = this.at(index + 1);
+    previousNode.next = nextNode;
   }
 }
