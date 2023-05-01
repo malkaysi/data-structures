@@ -1,3 +1,7 @@
+/*
+ * Class creates a LinkedList by creating new nodes from the Node class
+ */
+
 import Node from "./Node.js";
 
 export default class LinkedList {
@@ -51,16 +55,47 @@ export default class LinkedList {
     return totalNodes;
   }
 
-  head() {
-    // Return the first node in the list
+  // Return the first node in the list
+  header() {
+    if (this.head === null) {
+      return console.log("Error: No node has been created");
+    }
+    return console.log(this.head);
   }
 
+  // Return the last node in the list
   tail() {
-    // Return the last node in the list
+    if (this.head === null) {
+      return console.log("Error: No node has been created");
+    }
+
+    let currentNode = this.head;
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+    }
+
+    return console.log({ tailNode: currentNode });
   }
 
+  // Return the node at the given index
   at(index) {
-    // Return the node at the given index
+    if (this.head === null) {
+      return console.log("Error: No node has been created");
+    }
+
+    // Check if inputted index is larger than the list
+    if (this.size() <= index) {
+      return console.log("Error: Inputted index is larger than Linked List");
+    }
+
+    let currentIndex = 0;
+    let currentNode = this.head;
+    while (currentIndex < index) {
+      currentNode = currentNode.next;
+      currentIndex++;
+    }
+
+    return console.log({ currentNode });
   }
 
   pop() {
@@ -68,6 +103,6 @@ export default class LinkedList {
   }
 
   listToString() {
-    // Represents LinkedLIst objects as strings to print out in console
+    // Represents LinkedList objects as strings to print out in console
   }
 }

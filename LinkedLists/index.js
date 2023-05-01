@@ -12,5 +12,8 @@ linkedList.append("6");
 linkedList.append("3");
 linkedList.prepend("5)");
 linkedList.size();
+linkedList.header();
+linkedList.tail();
+linkedList.at(4);
 console.log(linkedList);
 console.log(linkedList.size());
