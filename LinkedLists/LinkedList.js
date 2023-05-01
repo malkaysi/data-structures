@@ -60,7 +60,7 @@ export default class LinkedList {
     if (this.head === null) {
       return console.log("Error: No node has been created");
     }
-    return console.log({ headerNode: this.head });
+    return this.head;
   }
 
   // Return the last node in the list
@@ -117,5 +117,33 @@ export default class LinkedList {
   }
 
   // Represents LinkedList objects as strings to print out in console
-  toString() {}
+  toString(nextNode) {
+    // Want to print out `${node.value} > ${node.value}`
+    if (this.head === null) {
+      return console.log("Error: No node has been created");
+    }
+
+    if (!nextNode) {
+      return null;
+    }
+
+    //let currentNode;
+
+    /* if (nextNode === null) {
+      currentNode = this.head;
+    } */
+
+    // currentNode = nextNode;
+
+    /* if (currentNode.next === null) {
+      return `${currentNode.value} > null`;
+    } */
+
+    return `${nextNode.value} > ${this.toString(nextNode.next)}`;
+
+    /* while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+      return `${currentNode.value} >`;
+    } */
+  }
 }
