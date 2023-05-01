@@ -11,9 +11,12 @@ linkedList.append("2");
 linkedList.append("6");
 linkedList.append("3");
 linkedList.prepend("5)");
-linkedList.size();
 linkedList.header();
+console.log({ size: linkedList.size() });
 linkedList.tail();
 linkedList.at(4);
-console.log(linkedList);
-console.log(linkedList.size());
+linkedList.pop();
+console.log({ size: linkedList.size() });
+
+// console.log(linkedList);
+// console.log(linkedList.size());

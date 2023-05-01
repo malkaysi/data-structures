@@ -30,8 +30,8 @@ export default class LinkedList {
     return this.head;
   }
 
+  // Add a new node containing value to the start of the list
   prepend(value) {
-    // Add a new node containing value to the start of the list
     if (this.head === null) {
       this.head = new Node(value);
       return this.head;
@@ -43,8 +43,8 @@ export default class LinkedList {
     return this.head;
   }
 
+  // Similar to append, drilling down as long as next is not null and counting
   size() {
-    // Similar to append, drilling down as long as next is not null and counting
     let currentNode = this.head;
     let totalNodes = 0;
     while (currentNode !== null) {
@@ -60,7 +60,7 @@ export default class LinkedList {
     if (this.head === null) {
       return console.log("Error: No node has been created");
     }
-    return console.log(this.head);
+    return console.log({ headerNode: this.head });
   }
 
   // Return the last node in the list
@@ -98,11 +98,24 @@ export default class LinkedList {
     return console.log({ currentNode });
   }
 
+  // Removes the last element from the list
   pop() {
-    // Removes the last element from the list
+    if (this.head === null) {
+      return console.log("Error: No node has been created");
+    }
+
+    // Select the second to last node when value is not equal to null (last node will point ot null)
+    let lastNode = this.head;
+    while (lastNode.next.next !== null) {
+      lastNode = lastNode.next;
+    }
+
+    // Replace next with null
+    lastNode.next = null;
+
+    return console.log({ pop: lastNode });
   }
 
-  listToString() {
-    // Represents LinkedList objects as strings to print out in console
-  }
+  // Represents LinkedList objects as strings to print out in console
+  toString() {}
 }
