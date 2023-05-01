@@ -24,10 +24,14 @@ linkedList.tail();
 let indexNode = linkedList.at(4);
 console.log({ indexNode });
 
+// Inserting a new node
+console.log({ newNode: linkedList.insertAt("555", 2) });
+console.log(linkedList.toString(headerNode));
+
+console.log({ newNode: linkedList.insertAt("222", 0) });
+let newHeader = linkedList.header();
+console.log(linkedList.toString(newHeader));
+
 // Deleting last node
 linkedList.pop();
-
 console.log({ updatedSize: linkedList.size() });
-
-// Inserting a new node
-linkedList.insertAt("555", 2);

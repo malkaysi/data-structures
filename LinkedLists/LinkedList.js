@@ -124,6 +124,27 @@ export default class LinkedList {
 
   insertAt(value, index) {
     checkHeader(this.head);
-    // Grab the node before the index
+    // Need to change the node before the index to point to the new node
+    // Need to point the new index next to the current node
+    let previousNode;
+    let initialNode;
+    let newNode;
+
+    if (index === 0) {
+      previousNode = this.head;
+      initialNode = this.head;
+
+      this.head = new Node(value, initialNode);
+      previousNode = this.head;
+
+      return previousNode;
+    }
+
+    previousNode = this.at(index - 1);
+    initialNode = previousNode.next;
+
+    newNode = new Node(value, initialNode);
+    previousNode.next = newNode;
+    return newNode;
   }
 }
