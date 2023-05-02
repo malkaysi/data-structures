@@ -17,6 +17,7 @@ export default class Tree {
     }
     let mid = Math.floor((start + end) / 2);
 
+    // Run buildTree for each sub-tree by selecting left and right ranges from original array
     let leftTree = this.buildTree(start, mid - 1);
     let rightTree = this.buildTree(mid + 1, end);
 
