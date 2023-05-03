@@ -40,7 +40,7 @@ export default class Tree {
 
     // Compare value to the current node value
     // If it is less, we move to the left and doing a left search on the next node first
-    value < currentNode.root
+    value < currentNode.value
       ? (currentNode.left = this.insert(value, currentNode.left))
       : (currentNode.right = this.insert(value, currentNode.right));
 
@@ -49,6 +49,9 @@ export default class Tree {
 
   // Deleting a node
   delete(value, currentNode = this.root) {
+    if (currentNode === null) {
+      return null;
+    }
     let previousNode;
 
     // Check and delete leaf nodes
@@ -71,10 +74,31 @@ export default class Tree {
       return currentNode;
     }
 
-    value < currentNode.root
+    // If it has two children, replace it with the right-subtree inorder child
+    if (currentNode.left && currentNode.right && currentNode.value === value) {
+      // Go to the right sub-tree and find the inorder child
+      let replacementNode = this.inOrder(currentNode.right);
+      this.delete(replacementNode.value, this.root);
+
+      // Replace the node being delete with the new value
+      currentNode.value = replacementNode.value;
+
+      return currentNode;
+    }
+
+    value < currentNode.value && value !== currentNode.value
       ? (currentNode.left = this.delete(value, currentNode.left))
       : (currentNode.right = this.delete(value, currentNode.right));
 
     return currentNode;
+  }
+
+  inOrder(node) {
+    // Go down the left sub tree
+    if (node.left === null) {
+      return node;
+    }
+
+    return this.inOrder(node.left);
   }
 }

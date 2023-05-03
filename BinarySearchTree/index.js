@@ -13,7 +13,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node.right !== null) {
     prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
   }
-  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.root}`);
+  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
   if (node.left !== null) {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
@@ -26,7 +26,7 @@ binaryTree.insert(10);
 
 prettyPrint(binaryTree.root);
 
-binaryTree.delete(11);
+binaryTree.delete(5);
 
 prettyPrint(binaryTree.root);
 

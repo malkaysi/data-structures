@@ -1,7 +1,7 @@
 // Binary tree node
 export default class Node {
-  constructor(root) {
-    this.root = root;
+  constructor(value) {
+    this.value = value;
     this.left = null;
     this.right = null;
   }
