@@ -1,7 +1,7 @@
 import Node from "./Node.js";
 import Tree from "./Tree.js";
 
-let array = [1, 2, 3, 4, 5, 6, 7];
+let array = [1, 3, 4, 5, 7, 8, 11];
 
 let binaryTree = new Tree(array);
 
@@ -18,6 +18,15 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
+
+// prettyPrint(binaryTree.root);
+
+binaryTree.insert(2);
+binaryTree.insert(10);
+
+prettyPrint(binaryTree.root);
+
+binaryTree.delete(11);
 
 prettyPrint(binaryTree.root);
 

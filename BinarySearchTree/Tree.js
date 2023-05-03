@@ -29,4 +29,52 @@ export default class Tree {
 
     return node;
   }
+
+  // Insert a new node
+  insert(value, currentNode = this.root) {
+    // If we have moved down to a null node, create it there
+    if (currentNode === null) {
+      currentNode = new Node(value);
+      return currentNode;
+    }
+
+    // Compare value to the current node value
+    // If it is less, we move to the left and doing a left search on the next node first
+    value < currentNode.root
+      ? (currentNode.left = this.insert(value, currentNode.left))
+      : (currentNode.right = this.insert(value, currentNode.right));
+
+    return currentNode;
+  }
+
+  // Deleting a node
+  delete(value, currentNode = this.root) {
+    let previousNode;
+
+    // Check and delete leaf nodes
+    if (currentNode.left === null && currentNode.right === null) {
+      currentNode = null;
+      return currentNode;
+    }
+
+    // If it has one child
+    // copy the child node as the current node, delete the child
+    if (currentNode.left === null) {
+      previousNode = currentNode.right;
+      currentNode.right = null;
+      currentNode = previousNode;
+      return currentNode;
+    } else if (currentNode.right === null) {
+      previousNode = currentNode.left;
+      currentNode.left = null;
+      currentNode = previousNode;
+      return currentNode;
+    }
+
+    value < currentNode.root
+      ? (currentNode.left = this.delete(value, currentNode.left))
+      : (currentNode.right = this.delete(value, currentNode.right));
+
+    return currentNode;
+  }
 }
