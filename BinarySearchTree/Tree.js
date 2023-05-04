@@ -77,7 +77,7 @@ export default class Tree {
     // If it has two children, replace it with the right-subtree inorder child
     if (currentNode.left && currentNode.right && currentNode.value === value) {
       // Go to the right sub-tree and find the inorder child
-      let replacementNode = this.inOrder(currentNode.right);
+      let replacementNode = this.inOrderNode(currentNode.right);
       this.delete(replacementNode.value, this.root);
 
       // Replace the node being delete with the new value
@@ -93,12 +93,26 @@ export default class Tree {
     return currentNode;
   }
 
-  inOrder(node) {
+  inOrderNode(node) {
     // Go down the left sub tree
     if (node.left === null) {
       return node;
     }
 
-    return this.inOrder(node.left);
+    return this.inOrderNode(node.left);
+  }
+
+  find(value, currentNode = this.root) {
+    if (currentNode === null) {
+      return null;
+    }
+
+    if (currentNode.value === value) {
+      return currentNode;
+    }
+
+    return value < currentNode.value
+      ? this.find(value, currentNode.left)
+      : this.find(value, currentNode.right);
   }
 }

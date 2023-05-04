@@ -30,4 +30,6 @@ binaryTree.delete(5);
 
 prettyPrint(binaryTree.root);
 
+console.log({ binaryTree: binaryTree.find(3) });
+
 // console.log(binaryTree);
