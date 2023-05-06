@@ -32,4 +32,5 @@ prettyPrint(binaryTree.root);
 
 console.log({ binaryTree: binaryTree.find(3) });
 
-// console.log(binaryTree);
+console.log({ levelOrder: binaryTree.recursiveLevelOrder() });
+console.log({ iterativeLevelOrder: binaryTree.iterativeLevelOrder() });

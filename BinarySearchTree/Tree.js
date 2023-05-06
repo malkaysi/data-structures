@@ -115,4 +115,45 @@ export default class Tree {
       ? this.find(value, currentNode.left)
       : this.find(value, currentNode.right);
   }
+
+  // Recursive Queue: Traverse the tree in breadth-first level order and provide each node as the argument to callback
+  recursiveLevelOrder(callback, q = [this.root], values = []) {
+    // When queue is empty, return values
+    if (!q) return values;
+
+    // If callback is provided, pass the node as an argument
+    let currentNode = q.shift();
+    if (callback) callback(currentNode);
+    if (!currentNode) return values;
+
+    // Add node value to array
+    values.push(currentNode.value);
+
+    // Add sub-trees to queue for breadth-first level order search
+    if (currentNode.left) q.push(currentNode.left);
+    if (currentNode.right) q.push(currentNode.right);
+
+    // Recursive callback
+    this.recursiveLevelOrder(callback, q, values);
+
+    return values;
+  }
+
+  // Iterative Breadth-First Level Order
+  iterativeLevelOrder(callback) {
+    let q = [this.root];
+    let values = [];
+
+    while (q.length) {
+      let currentNode = q.shift();
+
+      if (currentNode.left) q.push(currentNode.left);
+      if (currentNode.right) q.push(currentNode.right);
+      if (callback) callback(currentNode);
+
+      values.push(currentNode.value);
+    }
+
+    if (!callback) return values;
+  }
 }
