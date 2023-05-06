@@ -181,4 +181,17 @@ export default class Tree {
 
     return values;
   }
+
+  // postOrder looks at left, right, root
+  postOrder(callback, currentNode = this.root, values = []) {
+    if (!currentNode) return values;
+
+    // Navigate to the left subtree, then right subtree
+    if (currentNode.left) this.postOrder(callback, currentNode.left, values);
+    if (currentNode.right) this.postOrder(callback, currentNode.right, values);
+    values.push(currentNode.value);
+    if (callback) callback(currentNode);
+
+    if (!callback) return values;
+  }
 }
