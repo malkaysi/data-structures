@@ -194,4 +194,41 @@ export default class Tree {
 
     if (!callback) return values;
   }
+
+  // Take a node and return height of it
+  height(node = this.root) {
+    // Go down a tree, if you hit a node that's null, return -1
+    /* if (node === null) return -1;
+    // Calculate height of sub-trees
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+
+    // Add the resulting sub-trees height to get total height
+    return Math.max(leftHeight, rightHeight) + 1; */
+
+    // ******* ANOTHER WAY *******
+
+    if (node === null) return -1;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    if (leftHeight > rightHeight) {
+      return leftHeight + 1;
+    } else {
+      return rightHeight + 1;
+    }
+  }
+
+  // Take a node and return depth (distance to the root)
+  depth(node, currentNode = this.root, depthCounter = 0) {
+    // Need to find the node starting from root
+    if (!currentNode) {
+      return null;
+    }
+
+    if (node.value === currentNode.value) return depthCounter;
+
+    return node.value < currentNode.value
+      ? this.depth(node, currentNode.left, depthCounter + 1)
+      : this.depth(node, currentNode.right, depthCounter + 1);
+  }
 }

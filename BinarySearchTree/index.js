@@ -32,7 +32,9 @@ prettyPrint(binaryTree.root);
 
 console.log({ binaryTree: binaryTree.find(3) });
 
-let traversalTree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+let traversalTree = new Tree([
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+]);
 console.log({ levelOrder: binaryTree.recursiveLevelOrder() });
 console.log({ iterativeLevelOrder: binaryTree.iterativeLevelOrder() });
 
@@ -40,3 +42,11 @@ prettyPrint(traversalTree.root);
 console.log({ inOrder: traversalTree.inOrder() });
 console.log({ preOrder: traversalTree.preOrder() });
 console.log({ postOrder: traversalTree.postOrder() });
+console.log({ height: traversalTree.height() });
+let depthTwo = traversalTree.find(2);
+let depthThree = traversalTree.find(1);
+
+console.log(depthTwo);
+
+console.log({ two: traversalTree.depth(depthTwo) });
+console.log({ three: traversalTree.depth(depthThree) });
