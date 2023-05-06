@@ -156,4 +156,29 @@ export default class Tree {
 
     if (!callback) return values;
   }
+
+  // Inorder looks at left, middle, right
+  inOrder(callback, currentNode = this.root, values = []) {
+    if (!currentNode) return values;
+
+    if (currentNode.left) this.inOrder(callback, currentNode.left, values);
+
+    values.push(currentNode.value);
+
+    if (currentNode.right) this.inOrder(callback, currentNode.right, values);
+
+    if (!callback) return values;
+  }
+
+  // Preorder looks at middle, left, right
+  preOrder(callback, currentNode = this.root, values = []) {
+    if (!currentNode) return values;
+
+    values.push(currentNode.value);
+    if (callback) callback(currentNode);
+    if (currentNode.left) this.preOrder(callback, currentNode.left, values);
+    if (currentNode.right) this.preOrder(callback, currentNode.right, values);
+
+    return values;
+  }
 }

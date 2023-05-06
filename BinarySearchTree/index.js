@@ -1,7 +1,7 @@
 import Node from "./Node.js";
 import Tree from "./Tree.js";
 
-let array = [1, 3, 4, 5, 7, 8, 11];
+let array = [1, 3, 4, 5, 6, 7, 8, 11, 16, 25, 27];
 
 let binaryTree = new Tree(array);
 
@@ -34,3 +34,5 @@ console.log({ binaryTree: binaryTree.find(3) });
 
 console.log({ levelOrder: binaryTree.recursiveLevelOrder() });
 console.log({ iterativeLevelOrder: binaryTree.iterativeLevelOrder() });
+console.log({ inOrder: binaryTree.inOrder() });
+console.log({ preOrder: binaryTree.preOrder() });
