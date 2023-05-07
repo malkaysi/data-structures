@@ -30,6 +30,11 @@ export default class Tree {
     return node;
   }
 
+  sort(arr) {
+    arr.sort((a, b) => a - b);
+    return arr;
+  }
+
   // Insert a new node
   insert(value, currentNode = this.root) {
     // If we have moved down to a null node, create it there
@@ -230,5 +235,63 @@ export default class Tree {
     return node.value < currentNode.value
       ? this.depth(node, currentNode.left, depthCounter + 1)
       : this.depth(node, currentNode.right, depthCounter + 1);
+  }
+
+  // Check if tree is balanced
+  isBalanced(node = this.root) {
+    // If we've reached the bottom then return true for that node
+    // This algoritm is calling another function (height) and is not optimcal
+    // *******
+    /* if (!node) return true;
+
+    // Compare sub-tree heights
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      return false;
+    }
+
+    // If current node sub-trees are good, check the next two
+    return this.isBalanced(node.left) && this.isBalanced(node.right); */
+    // *******
+    // Another way to do this
+    if (node === null) {
+      return 0;
+    }
+    let leftH = this.isBalanced(node.left);
+    if (leftH === -1) {
+      return -1;
+    }
+    let rightH = this.isBalanced(node.right);
+    if (rightH === -1) {
+      return -1;
+    }
+    if (Math.abs(leftH - rightH) > 1) {
+      return -1;
+    } else {
+      return Math.max(leftH, rightH) + 1;
+    }
+  }
+
+  isBalancedResult() {
+    if (this.isBalanced() === -1) {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Rebalance an unbalanced tree
+  rebalance() {
+    // Use traversal method to get the array
+    // Pass the array to sort method
+    // Then pass it to this class constructor and return this.root
+    if (this.root === null) return;
+    let newArr = this.inOrder();
+    let sortedArr = this.sort(newArr);
+    this.arr = sortedArr;
+    let rebalancedTree = new this.constructor(sortedArr);
+    this.root = rebalancedTree.root;
   }
 }
